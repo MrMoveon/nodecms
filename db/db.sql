@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `qy_manager` (
+CREATE TABLE IF NOT EXISTS `manager` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '管理员id',
   `account` VARCHAR(50) NOT NULL COMMENT '管理账号',
   `password` VARCHAR(32) NOT NULL COMMENT '管理员密码',

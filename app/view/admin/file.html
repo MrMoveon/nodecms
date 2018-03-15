@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文件管理</title>
+	<link rel="stylesheet" href="vendor/layui/css/layui.css">
+	<style>
+		.fileicon i{font-size:1.8em;color:#FFE88C;-webkit-text-stroke: 1px #F1C95F;}
+		.layui-table[lay-size="lg"] td, .layui-table[lay-size="lg"] th {
+			padding: 15px 10px;
+		}
+		.filelink{color:#20A53A;}
+		.filelink:hover{
+			color:#333;
+		}
+		.cz{display:none;}
+		tr:hover .cz{display: block;}
+	</style>
+</head>
+<body style="padding:15px;">
+<div class="head-top">
+	<button class="layui-btn layui-btn-sm layui-btn-primary">
+	  <i class="layui-icon">上级目录</i>
+	</button>
+	<button class="layui-btn layui-btn-sm layui-btn-primary" id="reload">
+	  <i class="layui-icon">&#x1002;</i>
+	</button>
+	<button class="layui-btn layui-btn-sm layui-btn-danger">当前路径：D:\wwwroot\hbrfhg.com\</button>
+	<span class="layui-btn layui-btn-sm layui-btn-success" style="float:right;">共65个目录，35个文件</span>
+</div>
+<div class="file-list">
+	<table class="layui-table" lay-size="lg" lay-skin="line">
+	  <thead>
+		<tr>
+		  <th>文件名</th>
+		  <th>文件大小</th>
+		  <th>创建时间</th>
+		  <th>最后修改时间</th>
+		  <th style="text-align:right;width:300px;">操作</th>
+		</tr> 
+	  </thead>
+	  <tbody>
+		<tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe622;</i> 目录1</td>
+		  <td>300KB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe622;</i> 目录2</td>
+		  <td>1MB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+		  <tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe622;</i> 目录3</td>
+		  <td>35KB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+		  <tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe621;</i> 文件1</td>
+		  <td>60KB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+		  <tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe621;</i> 文件2</td>
+		  <td>12KB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+		  <tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe60d;</i> 图片1</td>
+		  <td>350KB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+		  <tr>
+		  <td class="fileicon"><i class="layui-icon">&#xe60d;</i> 图片2</td>
+		  <td>460KB</td>
+		  <td>2016-11-29</td>
+		  <td>2016-11-29</td>
+		  <td>
+			<span class="cz">
+				<a class="filelink" href="javascript:;" onclick="DeleteFile('D:\\wwwroot\\hbrfhg.com\\foot.asp')">删除</a> |
+				<a class="filelink" href="javascript:;" onclick="OnlineEditFile(0,'D:\\wwwroot\\hbrfhg.com\\foot.asp')">编辑</a> |
+				<a class="filelink" href="javascript:;" onclick="ReName(0,'foot.asp')">重命名</a> |
+				<a class="filelink" href="javascript:;" onclick="GetFileBytes('D:\\wwwroot\\hbrfhg.com\\foot.asp',369)">下载</a>
+				
+			</span>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+	<div class="page">
+		<div class="layui-box layui-laypage layui-laypage-molv" style="float:right;" id="layui-laypage-4"><a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0">上一页</a><span class="layui-laypage-curr"><em class="layui-laypage-em" style="background-color:#FF5722;"></em><em>1</em></span><a href="javascript:;" data-page="2">2</a><a href="javascript:;" data-page="3">3</a><a href="javascript:;" data-page="4">4</a><a href="javascript:;" data-page="5">5</a><span class="layui-laypage-spr">…</span><a href="javascript:;" class="layui-laypage-last" title="尾页" data-page="10">10</a><a href="javascript:;" class="layui-laypage-next" data-page="2">下一页</a></div>
+	</div>
+</div>
+
+<script src="vendor/js/jquery.js"></script>
+<script src="vendor/layui/layui.js"></script>
+	<script>
+	$(function(){
+		$(window.parent.document).find('#righttitle').text($('title').text());
+		$('#reload').on('click',function(){
+			location.reload();
+		})
+	})
+	</script>
+</body>
+</html>

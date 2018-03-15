@@ -1,0 +1,33 @@
+<%- include('common/meta.html') %>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 头部 -->
+    <%- include('common/header.html') %>
+    <!-- 侧边栏 -->
+    <%- include('common/side.html') %>
+    
+    <div class="layui-body" id="layui-body" style="overflow: hidden;top:50px;">
+            <div class="layadmin-tabsbody-item layui-show">
+                    <!-- 面包屑 -->
+                     <%- include('./common/breadcrumb.html',{title:title}) %>
+                    <!--  -->
+                    <!-- 内容主体区域 -->
+                    <iframe id="_content" name="_content" src="/admin/info" scrolling="yes" frameborder="no" onload="this.height=document.body.scrollHeight-170"></iframe>
+                    <!--  -->
+                </div>
+       
+       
+    </div>
+    <!-- 底部 -->
+    <%- include('common/footer.html') %>
+</div>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+		
+    });
+</script>
+</body>
+</html>

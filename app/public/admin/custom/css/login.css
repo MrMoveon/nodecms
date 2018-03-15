@@ -1,0 +1,27 @@
+body{
+    background: url(../images/bg.jpg) no-repeat center center;
+    height: 100%;
+    overflow: hidden;
+}
+.login-main{
+    max-width: 350px;
+    height:300px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color:rgba(255,255,255,.3);
+}
+.login-main h3{line-height: 50px;font-size:1.5rem;color:#EEE;margin-bottom: 15px;}
+.login-main h3 span{color:rgb(255,87,34)}
+.login-main .ly-input{
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.login-main .ly-input input{font-size:.9rem;color:#333;}
+.login-main .ly-input .ly-submit{width: 100%;}
+.login-main p{font-size: .6rem;color:#EEE;}
+@media screen and (max-width:760px){
+    .login-main{max-width: 300px;}
+}

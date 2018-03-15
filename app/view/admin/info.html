@@ -1,0 +1,127 @@
+<%- include('common/meta.html') %>
+<body style="">
+    
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header"><%= title %></div>
+                <div class="layui-card-body">
+
+                    <div class="layui-btn-container">
+                            <div class="layui-collapse" lay-accordion="" lay-filter="collapse">
+                                    <div class="layui-colla-item">
+                                        <h2 class="layui-colla-title">软件信息</h2>
+                                        <div class="layui-colla-content layui-show">
+                                            <table class="layui-table">
+                                                <tr>
+                                                    <td width="40%">软件名称</td>
+                                                    <td width="60%">双语版企业网站</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>系统版本</td>
+                                                    <td>v1.0.0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>QQ群</td>
+                                                    <td>494826865</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>技术支持</td>
+                                                    <td><a href="#';">易风课堂</a></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="layui-colla-item">
+                                        <h2 class="layui-colla-title">服务器信息</h2>
+                                        <div class="layui-colla-content">
+                                            <table class="layui-table">
+                                                <tr>
+                                                    <td>服务器IP</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="40%">服务器域名</td>
+                                                    <td width="60%"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>服务器操作系统</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>运行环境</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>服务器端口</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="40%">PHP版本</td>
+                                                    <td width="60%"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="layui-colla-item">
+                                        <h2 class="layui-colla-title">数据库信息</h2>
+                                        <div class="layui-colla-content">
+                                            <table class="layui-table">
+                                                <tr>
+                                                    <td width="40%">数据库版本</td>
+                                                    <td width="60%"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>数据库名称</td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="layui-colla-item">
+                                        <h2 class="layui-colla-title">管理员登录日志</h2>
+                                        <div class="layui-colla-content">
+                                            <table class="layui-table">
+                                                <tr>
+                                                    <td>上传文件最大限制</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>脚本占用最大内存</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>POST提交最大限制</td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div style="height:1000px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //JavaScript代码区域
+    layui.use(['layer','element'], function () {
+        var layer = layui.layer, element = layui.element;
+
+        //监听折叠
+        element.on('collapse(collapse)', function(data){
+            layer.msg('展开状态：'+ data.show);
+        });
+
+        // you code ...
+
+
+    });
+</script>
+</body>
+</html>
