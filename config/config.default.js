@@ -50,7 +50,7 @@ module.exports = appInfo => {
     json(err, ctx) {
       // json hander
       ctx.body = err;
-      ctx.status = 200;
+      ctx.status = 204;
     }
     
   }

@@ -6,7 +6,7 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
-  // 成功页
+  // 错误成功提示页
   router.get('/admin/jump',controller.baseController.jump)
   // admin
   router.get('/admin',controller.admin.index.index);

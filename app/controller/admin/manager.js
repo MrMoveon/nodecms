@@ -23,17 +23,14 @@ class ManagerController extends Controller {
       // 验证表单信息,自动获取表单
       ctx.validate(createRule);
       // 获取表单信息
-      var managerInfo={
-        account:ctx.request.body.account,
-        password:ctx.request.body.password,
-      }
+      const {account,password} = ctx.request.body;
       // 查询管理员是否存在
-      var hasManager = await ctx.service.admin.manager.findOne({account:managerInfo.account})
+      var hasManager = await ctx.service.admin.manager.findOne({account:account})
       if(hasManager){
         return await this.jump('error','添加的账户已存在','/admin/manager/add');
       }
       // 插入数据库,添加管理员
-      var result = await ctx.service.admin.manager.add(managerInfo);
+      var result = await ctx.service.admin.manager.add({account:account,password:password});
       if(result){
         return await this.jump('success','添加成功','/admin/manager/add');
       }
@@ -41,7 +38,6 @@ class ManagerController extends Controller {
     }
     //表单提交需要获取session,cookies中的csrfToken 安全token
     var csrfToken = ctx.session.csrfToken;
-    
     await ctx.render('admin/manager_add',{title:'管理员添加',csrfToken:csrfToken});
   }
 }

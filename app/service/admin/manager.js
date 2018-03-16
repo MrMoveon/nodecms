@@ -8,7 +8,7 @@ class ManagerService extends Service {
         const insertSuccess = result.affectedRows === 1;
         return insertSuccess;
     }
-    // 查找一天条数据
+    // 查找一条数据
     async findOne(data) {
         return await this.app.mysql.get('manager',data);
     }
