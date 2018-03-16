@@ -1,19 +1,27 @@
 'use strict';
 
-const Controller = require('../base_controller');
+const Controller = require('../common')
 
 // 定义创建接口的请求参数规则
 const createRule = {
   account: {type: 'string', required: true,min:6,max:12},
-  password: 'string',
-  repassword:'string',
+  password:{type: 'string', required: true,min:6,max:12},
+  repassword:{type: 'string', required: true,min:6,max:12},
 };
 
 
 class ManagerController extends Controller {
+  // 管理员列表
+  async index () {
+    const {ctx} = this;
+    // const {limit,offset} = ctx.query
+    var results =await ctx.service.admin.manager.find(10,0);
+    await ctx.render('admin/manager_index',{title:'管理员添加',data:results});
+  }
+
+  // 管理员添加
   async add() {
     const {ctx} = this;
-
 
     if(ctx.method==='POST'){
       // 表单验证,验证ctx.request.body传过来的数据，如果是json请求出错，返回json格式，如果是form表单请求，返回html错误页
