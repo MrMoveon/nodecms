@@ -14,9 +14,15 @@ class ManagerController extends Controller {
   // 管理员列表
   async index () {
     const {ctx} = this;
-    // const {limit,offset} = ctx.query
-    var results =await ctx.service.admin.manager.find(10,0);
-    await ctx.render('admin/manager_index',{title:'管理员添加',data:results});
+    const page = ctx.query.page || 1;
+    var limit = 2;
+    var offset=(page-1)*limit;
+    // 总数
+    var count = await ctx.service.admin.manager.count();
+    var results =await ctx.service.admin.manager.find(limit,offset);
+    
+   
+    await ctx.render('admin/manager_index',{title:'管理员添加',count:count,limit:limit,page:page,data:results});
   }
 
   // 管理员添加

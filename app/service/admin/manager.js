@@ -10,6 +10,7 @@ class ManagerService extends Service {
     }
     // 查找一条数据
     async findOne(data) {
+        
         return await this.app.mysql.get('manager',data);
     }
     // 查找所有数据
@@ -19,6 +20,10 @@ class ManagerService extends Service {
             limit: limit, // 返回数据量
             offset: offset, // 数据偏移量
         });
+    }
+    async count () {
+       var results=await this.app.mysql.select('manager')
+       return results.length;
     }
 }
 module.exports = ManagerService;

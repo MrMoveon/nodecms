@@ -24,17 +24,18 @@
                         </tr> 
                       </thead>
                       <tbody>
+                        <% data.forEach(function(item){ %>
                         <tr>
-                          <td>1</td>
-                          <td>12312312</td>
-                          <td>正常</td>
+                          <td><%= item.id %></td>
+                          <td><%= item.account %></td>
+                          <td><%- item.state?'正常':'锁定' %></td>
                           <td>
                               <button class="layui-btn layui-btn-normal layui-btn-sm"><i class="layui-icon"></i></button>
                               <button class="layui-btn layui-btn-danger layui-btn-sm"><i class="layui-icon"></i></button>
                               
                         </td>
                         </tr>
-                       
+                        <% }) %>
                       </tbody>
                     </table> 
                     <div id="page"></div>
@@ -49,11 +50,21 @@
 <script>
     //JavaScript代码区域
     layui.use(['jquery','layer','laypage'], function () {
-        var $ = layui.jquery, layer = layui.layer,laypage=layer.laypage;
+        var $ = layui.jquery, layer = layui.layer,laypage=layui.laypage;
         //总页数低于页码总数
         laypage.render({
-          elem: 'page'
-          ,count: 50 //数据总数
+            elem: 'page',
+            count: <%= count %>, //数据总数
+            limit: <%= limit %>,//每页显示几条
+            curr: <%= page %>,//当前页
+            jump: function (obj, first) {
+               
+                //首次不执行
+                if (!first) {
+                    window.location.href="/admin/manager?page="+obj.curr;
+                }
+                
+            }
         });
        
 
