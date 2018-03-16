@@ -6,6 +6,8 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
+  // 成功页
+  router.get('/admin/jump',controller.baseController.jump)
   // admin
   router.get('/admin',controller.admin.index.index);
   router.get('/admin/info',controller.admin.index.info);

@@ -46,22 +46,22 @@
     layui.use(['jquery','layer',"form"], function () {
         var $ = layui.jquery, layer = layui.layer, form = layui.form;
         
-        form.on('submit(add)', function(data){
-          $.ajax({
-            url:'/admin/manager/add?_csrf=<%- csrfToken %>',
-            method:'post',
-            data:data.field,
-            dataType:'json',
-            success:function(res){
-              if(!res.code){
-                layer.msg(res.msg)
-              }else{
-                layer.msg(res.msg)
-              }
-            }
-          })
+        // form.on('submit(add)', function(data){
+        //   $.ajax({
+        //     url:'/admin/manager/add?_csrf=<%- csrfToken %>',
+        //     method:'post',
+        //     data:data.field,
+        //     dataType:'json',
+        //     success:function(res){
+        //       if(!res.code){
+        //         layer.msg(res.message)
+        //       }else{
+        //         layer.msg(res.message)
+        //       }
+        //     }
+        //   })
 
-         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        //  return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 });
 
     });

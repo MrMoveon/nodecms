@@ -44,8 +44,16 @@ module.exports = appInfo => {
     }
   };
 
-  
-  
+  //自定义异常
+  config.onerror= {
+    
+    json(err, ctx) {
+      // json hander
+      ctx.body = err;
+      ctx.status = 200;
+    }
+    
+  }
 
   return config;
 };
