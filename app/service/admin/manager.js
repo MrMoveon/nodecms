@@ -21,9 +21,15 @@ class ManagerService extends Service {
             offset: offset, // 数据偏移量
         });
     }
+    // 统计
     async count () {
        var results=await this.app.mysql.select('manager')
        return results.length;
+    }
+    async del (id) {
+     var result = await this.app.mysql.delete('manager',{id:id});
+     const delSuccess = result.affectedRows === 1;
+     return delSuccess;
     }
 }
 module.exports = ManagerService;

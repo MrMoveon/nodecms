@@ -30,9 +30,8 @@
                           <td><%= item.account %></td>
                           <td><%- item.state?'正常':'锁定' %></td>
                           <td>
-                              <button class="layui-btn layui-btn-normal layui-btn-sm"><i class="layui-icon"></i></button>
-                              <button class="layui-btn layui-btn-danger layui-btn-sm"><i class="layui-icon"></i></button>
-                              
+                              <button class="layui-btn layui-btn-normal layui-btn-sm edit-btn" data-id="<%= item.id %>"><i class="layui-icon"></i></button>
+                              <button class="layui-btn layui-btn-danger layui-btn-sm del-btn" data-id="<%= item.id %>"><i class="layui-icon"></i></button>
                         </td>
                         </tr>
                         <% }) %>
@@ -66,8 +65,34 @@
                 
             }
         });
-       
+        console.log()
+        // 编辑
+        $('.layui-table').on('click','.edit-btn',function(){
+            var id=$(this).data('id');
+        })
+        // 删除
+        $('.layui-table').on('click','.del-btn',function(){
+            var id=$(this).data('id');
+            console.log(id)
+            $.ajax({
+                url:'/admin/manager?_csrf=<%- csrfToken %>',
+                method:'DELETE',
+                data:{id:id},
+                dataType:'json',
+                success:function(res){
+                    if (!res.code) {
+                       
+                        layer.alert(res.message,{shade:0},function (index) {
+                            window.location.href = "/admin/manager"
+                        });
 
+                    }
+                }
+            })
+            // $.post('/admin/manager?_csrf=<%- csrfToken %>',{id:id},function(res){
+            //     console.log(res)
+            // },'json')
+        })
     });
 </script>
 </body>

@@ -16,4 +16,5 @@ module.exports = app => {
   router.get('/admin/manager',controller.admin.manager.index);
   router.get('/admin/manager/add',controller.admin.manager.add);
   router.post('/admin/manager/add',controller.admin.manager.add);
+  router.delete('/admin/manager',controller.admin.manager.del);
 };

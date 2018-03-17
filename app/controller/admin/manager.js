@@ -21,8 +21,8 @@ class ManagerController extends Controller {
     var count = await ctx.service.admin.manager.count();
     var results =await ctx.service.admin.manager.find(limit,offset);
     
-   
-    await ctx.render('admin/manager_index',{title:'管理员添加',count:count,limit:limit,page:page,data:results});
+    var csrfToken = ctx.session.csrfToken;
+    await ctx.render('admin/manager_index',{title:'管理员添加',count:count,limit:limit,page:page,data:results,csrfToken:csrfToken});
   }
 
   // 管理员添加
@@ -53,6 +53,19 @@ class ManagerController extends Controller {
     //表单提交需要获取session,cookies中的csrfToken 安全token
     var csrfToken = ctx.session.csrfToken;
     await ctx.render('admin/manager_add',{title:'管理员添加',csrfToken:csrfToken});
+  }
+  async del () {
+    const {ctx} = this;
+    var id = Number(ctx.request.body.id);
+   
+    var result = await ctx.service.admin.manager.del(id)
+   
+    if(result){
+      ctx.body={
+        code:0,
+        message:'删除成功'
+      }
+    }
   }
 }
 
