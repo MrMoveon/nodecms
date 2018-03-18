@@ -4,25 +4,29 @@ const Controller = require('../common')
 
 // 定义创建接口的请求参数规则
 const createRule = {
-  account: {type: 'string', required: true,min:6,max:12},
-  password:{type: 'string', required: true,min:6,max:12},
-  repassword:{type: 'string', required: true,min:6,max:12},
+  account: {type: 'string', required: true,min:5,max:12},
+  password:{type: 'string', required: true,min:5,max:12},
+  repassword:{type: 'string', required: true,min:5,max:12}
 };
-
+const updateRule = {
+  account: {type: 'string', required: true,min:5,max:12},
+  password:{type: 'password',compare:'repassword',min:5,max:12},
+  state:{type:'enum',values:['0','1']}
+};
 
 class ManagerController extends Controller {
   // 管理员列表
   async index () {
     const {ctx} = this;
     const page = ctx.query.page || 1;
-    var limit = 2;
+    var limit = 10;
     var offset=(page-1)*limit;
     // 总数
     var count = await ctx.service.admin.manager.count();
     var results =await ctx.service.admin.manager.find(limit,offset);
     
     var csrfToken = ctx.session.csrfToken;
-    await ctx.render('admin/manager_index',{title:'管理员添加',count:count,limit:limit,page:page,data:results,csrfToken:csrfToken});
+    await ctx.render('admin/manager_index',{title:'管理员列表',count:count,limit:limit,page:page,data:results,csrfToken:csrfToken});
   }
 
   // 管理员添加
@@ -41,12 +45,12 @@ class ManagerController extends Controller {
       // 查询管理员是否存在
       var hasManager = await ctx.service.admin.manager.findOne({account:account})
       if(hasManager){
-        return await this.jump('error','添加的账户已存在','/admin/manager/add');
+        return await this.error('添加的账户已存在','/admin/manager/add');
       }
       // 插入数据库,添加管理员
       var result = await ctx.service.admin.manager.add({account:account,password:password});
       if(result){
-        return await this.jump('success','添加成功','/admin/manager/add');
+        return await this.success('添加成功','/admin/manager/add');
       }
       
     }
@@ -54,6 +58,32 @@ class ManagerController extends Controller {
     var csrfToken = ctx.session.csrfToken;
     await ctx.render('admin/manager_add',{title:'管理员添加',csrfToken:csrfToken});
   }
+  // 管理员编辑
+  async edit () {
+    const {ctx} = this;
+    if(ctx.method==='POST'){
+      console.log(ctx.request.body)
+      ctx.validate(updateRule);
+      const {password,state,id} = ctx.request.body;
+      var data={
+        id:Number(id),
+        password:password,
+        state:Number(state)
+      }
+      var result = await ctx.service.admin.manager.update(data);
+      if(result){
+        return await this.success('编辑成功','/admin/manager');
+      }
+      
+    }else{
+      var id =Number(ctx.query.id);
+      var csrfToken = ctx.session.csrfToken;
+      var manager = await ctx.service.admin.manager.findOne({id:id})
+      await ctx.render('admin/manager_edit',{title:'管理员编辑',csrfToken:csrfToken,data:manager});
+    }
+    
+  }
+  // 管理员删除
   async del () {
     const {ctx} = this;
     var id = Number(ctx.request.body.id);
@@ -67,6 +97,7 @@ class ManagerController extends Controller {
       }
     }
   }
+  
 }
 
 module.exports = ManagerController;

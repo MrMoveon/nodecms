@@ -8,12 +8,11 @@
                 <div class="layui-card-header"><%= title %></div>
                 <div class="layui-card-body">
                     <!--  -->
-                    <form class="layui-form" action="/admin/manager/add?_csrf=<%- csrfToken %>" method="post">
-                      
+                    <form class="layui-form" action="/admin/manager/edit?_csrf=<%- csrfToken %>" method="post">
                             <div class="layui-form-item">
                               <label class="layui-form-label">管理员账号</label>
                               <div class="layui-input-inline">
-                                <input type="text" name="account" required lay-verify="account" placeholder="请输入管理员账号" autocomplete="off" class="layui-input">
+                                <input type="text" name="account" required lay-verify="account" placeholder="请输入管理员账号" autocomplete="off" class="layui-input" readonly value="<%= data.account%>">
                               </div>
                             </div>
                             <div class="layui-form-item">
@@ -28,9 +27,17 @@
                                 <input type="password" name="repassword" required lay-verify="repassword" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
                               </div>
                             </div>
+                            <div class="layui-form-item">
+                              <label class="layui-form-label">状态</label>
+                              <div class="layui-input-block">
+                                  <input type="radio" name="state" value="1" <%= data.state===1?'checked':''%> title="开启">
+                                  <input type="radio" name="state" value="0" <%= data.state===0?'checked':''%> title="锁定">
+                              </div>
+                          </div>
                              <div class="layui-form-item">
                               <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="add">添加</button>
+                                <input type="hidden" name="id" value="<%= data.id %>">
+                                <button class="layui-btn" lay-submit lay-filter="edit">确定</button>
                               </div>
                             </div>
                           </form>

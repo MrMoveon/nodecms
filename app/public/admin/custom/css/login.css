@@ -1,11 +1,11 @@
 body{
-    background: url(../images/bg.jpg) no-repeat center center;
+    background: #149bff;
     height: 100%;
     overflow: hidden;
 }
 .login-main{
     max-width: 350px;
-    height:300px;
+    height:260px;
     text-align: center;
     margin: 0 auto;
     border-radius: 5px;

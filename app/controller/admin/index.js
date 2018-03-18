@@ -2,6 +2,8 @@
 
 const Controller = require('egg').Controller;
 
+
+
 class IndexController extends Controller {
     // 后台首页
     async index() {
@@ -14,10 +16,7 @@ class IndexController extends Controller {
        
         await ctx.render('admin/info',{title:'后台信息'});
     }
-    async add(){
-        let { ctx } = this;
-        ctx.body="add";
-    }
+   
 }
 
 module.exports = IndexController;

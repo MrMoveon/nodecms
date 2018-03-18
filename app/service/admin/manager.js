@@ -26,10 +26,18 @@ class ManagerService extends Service {
        var results=await this.app.mysql.select('manager')
        return results.length;
     }
+    // 删除
     async del (id) {
      var result = await this.app.mysql.delete('manager',{id:id});
      const delSuccess = result.affectedRows === 1;
      return delSuccess;
     }
+    // 更新
+    async update (data) {
+        const result = await this.app.mysql.update('manager', data);
+        const updateSuccess = result.affectedRows === 1;
+        return updateSuccess;
+    }
+
 }
 module.exports = ManagerService;
