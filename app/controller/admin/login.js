@@ -8,7 +8,6 @@ const loginRule={
 class LoginController extends Controller{
     async index () {
         let { ctx } = this;
-       
         if(ctx.method==='POST'){
            ctx.validate(loginRule);
            const {account,password} = ctx.request.body;
@@ -16,7 +15,10 @@ class LoginController extends Controller{
            var result =await ctx.service.admin.manager.findOne({account:account});
            if(!result) return this.error('用户名或密码错误')
            if(result.account===account && result.password===password){
-               ctx.session.userId=result.id;
+               ctx.session.user={
+                    id:result.id,
+                    account:result.account,
+               };
                return this.success('登录成功！','/admin');
            }
             
@@ -24,6 +26,11 @@ class LoginController extends Controller{
             var csrfToken = ctx.session.csrfToken;
             await ctx.render('admin/login',{csrfToken:csrfToken})
         }
+    }
+    async logout(){
+        let { ctx } = this;
+        ctx.session.user=null;
+        return this.success('退出成功!','/login');
     }
 }
 module.exports = LoginController;

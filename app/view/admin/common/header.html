@@ -32,19 +32,17 @@
         </li>
         <li class="layui-nav-item">
             <a href="javascript:;">
-                <cite>贤心</cite>
+                <cite><%= userInfo.account %></cite>
                 <span class="layui-nav-more"></span>
             </a>
             <dl class="layui-nav-child">
                 <dd>
-                    <a lay-href="set/base/website">基本资料</a>
+                    <a href="/admin/manager/edit?id=<%= userInfo.id %>" target="_content" lay-href="set/base/website">修改资料</a>
                 </dd>
-                <dd>
-                    <a lay-href="set/security/">安全设置</a>
-                </dd>
+                
                 <hr>
                 <dd layadmin-event="logout" style="text-align: center;">
-                    <a>退出</a>
+                    <a href="/logout">退出</a>
                 </dd>
             </dl>
         </li>

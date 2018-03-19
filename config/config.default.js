@@ -7,7 +7,8 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_530385371';
 
   // add your config here
-  config.middleware = ['checkLogin'];
+  // config.middleware = ['checkLogin'];
+  config.middleware = [];
 
   config.mysql = {
     // 单数据库信息配置
