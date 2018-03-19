@@ -6,3 +6,14 @@ CREATE TABLE IF NOT EXISTS `manager` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `account_UNIQUE` (`account` ASC))
 ENGINE = InnoDB
+
+
+CREATE TABLE `config` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`config` TEXT NULL COMMENT '配置信息',
+	PRIMARY KEY (`id`)
+)
+COMMENT='配置信息'
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=3;

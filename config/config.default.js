@@ -44,7 +44,10 @@ module.exports = appInfo => {
       sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
     }
   };
-
+  // 上传配置
+  config.multipart = {
+    fileSize: '50mb',
+  };
   //自定义异常
   config.onerror= {
     

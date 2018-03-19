@@ -27,4 +27,11 @@ module.exports = app => {
   router.get('/admin/manager/edit',checkLoginAdmin,controller.admin.manager.edit);
   router.post('/admin/manager/edit',checkLoginAdmin,controller.admin.manager.edit);
   router.delete('/admin/manager',checkLoginAdmin,controller.admin.manager.del);
+
+  // 网站配置
+  router.get('/admin/config',checkLoginAdmin,controller.admin.config.index);
+  router.post('/admin/config',checkLoginAdmin,controller.admin.config.index);
+
+  //api
+  router.post('/upload',checkLoginAdmin,controller.api.upload);
 };
