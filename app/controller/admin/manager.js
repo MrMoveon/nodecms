@@ -1,7 +1,7 @@
 'use strict';
 
 const Controller = require('../common')
-
+let md5 = require('../../common/md5');
 // 定义创建接口的请求参数规则
 const createRule = {
   account: {type: 'string', required: true,min:5,max:12},
@@ -41,7 +41,9 @@ class ManagerController extends Controller {
       // 验证表单信息,自动获取表单
       ctx.validate(createRule);
       // 获取表单信息
-      const {account,password} = ctx.request.body;
+      let {account,password} = ctx.request.body;
+      // 加密入库
+      password=md5(md5(password).substr(4,10)+password);
       // 查询管理员是否存在
       var hasManager = await ctx.service.admin.manager.findOne({account:account})
       if(hasManager){
