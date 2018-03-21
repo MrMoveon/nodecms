@@ -4,15 +4,10 @@
 $(function () {
 
 //    左侧菜单
-    // $('.layui-nav-item').on('click',function(){
-    //     var obj=$(this);
-    //     if($(obj).find('dl').first().hasClass('layui-nav-child')){
-    //         $('.layui-nav-item').each(function () {
-    //             $(this).removeClass('layui-nav-itemed');
-    //         });
-    //         $(obj).addClass('layui-nav-itemed');
-    //     }
-    // });
+    $('.layui-nav-item').on('click','dd a',function(){
+        var obj=$(this);
+        $('.breadcrumb-text').text(obj.text())
+    });
 
 
 

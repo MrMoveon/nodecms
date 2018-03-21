@@ -28,6 +28,8 @@ module.exports = app => {
   router.post('/admin/manager/edit',checkLoginAdmin,controller.admin.manager.edit);
   router.delete('/admin/manager',checkLoginAdmin,controller.admin.manager.del);
 
+  //栏目管理
+  router.get('/admin/category',checkLoginAdmin,controller.admin.category.index);
   // 网站配置
   router.get('/admin/config',checkLoginAdmin,controller.admin.config.index);
   router.post('/admin/config',checkLoginAdmin,controller.admin.config.index);

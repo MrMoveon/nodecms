@@ -13,15 +13,15 @@ class ConfigController extends Controller{
             const {id,title,logo,keyword,desc,phone,online,address,state,closeinfo} = ctx.request.body
             data.id=ctx.request.body.id;
             data.config=JSON.stringify({
-                title:title,
-                logo:logo,
-                keyword:keyword,
-                desc:desc,
-                phone:phone,
-                online:online,
-                address:address,
-                state:state,
-                closeinfo:closeinfo
+                title:ctx.helper.escape(title),
+                logo:ctx.helper.escape(logo),
+                keyword:ctx.helper.escape(keyword),
+                desc:ctx.helper.escape(desc),
+                phone:ctx.helper.escape(phone),
+                online:ctx.helper.escape(online),
+                address:ctx.helper.escape(address),
+                state:ctx.helper.escape(state),
+                closeinfo:ctx.helper.escape(closeinfo)
             })
             if(result){//数据库有信息，更新
                 result = await this.app.mysql.update('config',data)
