@@ -1,0 +1,80 @@
+<%- include('common/meta.html') %>
+<body style="">
+    
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header"><%= title %></div>
+                <div class="layui-card-body">
+                    <!--  -->
+                    <form class="layui-form" action="/admin/manager/add?_csrf=<%- csrfToken %>" method="post">
+                      
+                            <div class="layui-form-item">
+                              <label class="layui-form-label">栏目标题</label>
+                              <div class="layui-input-inline">
+                                <input type="text" name="account" required lay-verify="account" placeholder="请输入管理员账号" autocomplete="off" class="layui-input">
+                              </div>
+                            </div>
+                            <div class="layui-form-item">
+                              <label class="layui-form-label">管理员密码</label>
+                              <div class="layui-input-inline">
+                                <input type="password" name="password" required lay-verify="password" placeholder="请输入管理员密码" autocomplete="off" class="layui-input">
+                              </div>
+                            </div>
+                            <div class="layui-form-item">
+                              <label class="layui-form-label">确认密码</label>
+                              <div class="layui-input-inline">
+                                <input type="password" name="repassword" required lay-verify="repassword" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
+                              </div>
+                            </div>
+                             <div class="layui-form-item">
+                              <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="add">添加</button>
+                              </div>
+                            </div>
+                          </form>
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //JavaScript代码区域
+    layui.use(['jquery','layer',"form"], function () {
+        var $ = layui.jquery, layer = layui.layer, form = layui.form;
+        form.verify({
+            account: function (value, item) { //value：表单的值、item：表单的DOM对象
+              if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                return '用户名不能有特殊字符';
+              }
+              if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                return '用户名首尾不能出现下划线\'_\'';
+              }
+              if (/^\d+\d+\d$/.test(value)) {
+                return '用户名不能全为数字';
+              }
+              if (value.length<5 || value.length>12) {
+                return '用户名必须5到12位，且不能出现空格'
+              }
+            },
+            password: [
+              /^[\S]{5,12}$/,
+              '密码必须5到12位，且不能出现空格'
+            ],
+            repassword:function(value,item){
+              var pwd = $("input[name='password']").val();
+              if(!new RegExp(pwd).test(value)) {
+                return '两次输入的密码不一致';
+              }
+            }
+          });      
+       
+
+    });
+</script>
+</body>
+</html>

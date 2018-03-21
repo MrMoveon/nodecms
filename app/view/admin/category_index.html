@@ -1,0 +1,58 @@
+<%- include('common/meta.html') %>
+<body style="">
+    
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header"><%= title %></div>
+                <div class="layui-card-body">
+                    <!--  -->
+                    <table class="layui-table" lay-skin="nob" lay-even="">
+                      <colgroup>
+                        <col width="30">
+                        <col>
+                        <col width="100">
+                        <col width="160">
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>名称</th>
+                          <th>状态</th>
+                          <th>操作</th>
+                        </tr> 
+                      </thead>
+                      <tbody>
+                        <% data.forEach(function(item){ %>
+                        <tr>
+                          <td><%= item.id %></td>
+                          <td><%- item.level?'|'+item.html:'' %> <%= item.title %></td>
+                          <td></td>
+                          <td>
+                              <button class="layui-btn layui-btn-normal layui-btn-sm edit-btn" data-id="<%= item.id %>"><i class="layui-icon"></i></button>
+                              <button class="layui-btn layui-btn-danger layui-btn-sm del-btn" data-id="<%= item.id %>"><i class="layui-icon"></i></button>
+                        </td>
+                        </tr>
+                        <% }) %>
+                      </tbody>
+                    </table> 
+                    <div id="page"></div>
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //JavaScript代码区域
+    layui.use(['jquery','layer','laypage'], function () {
+        var $ = layui.jquery, layer = layui.layer,laypage=layui.laypage;
+        //总页数低于页码总数
+       
+    });
+</script>
+</body>
+</html>

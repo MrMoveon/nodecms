@@ -30,6 +30,7 @@ module.exports = app => {
 
   //栏目管理
   router.get('/admin/category',checkLoginAdmin,controller.admin.category.index);
+  router.get('/admin/category/add',checkLoginAdmin,controller.admin.category.add);
   // 网站配置
   router.get('/admin/config',checkLoginAdmin,controller.admin.config.index);
   router.post('/admin/config',checkLoginAdmin,controller.admin.config.index);
