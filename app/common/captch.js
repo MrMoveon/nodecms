@@ -1,6 +1,6 @@
 const captchapng = require('captchapng');
 /**
- * 
+ * 生成验证码
  * @param {*} ctx 需要传递ctx对象
  * @param {*} len 验证码长度
  */
@@ -24,6 +24,7 @@ exports.captch=function(ctx,len=4){
 
 }
 /**
+ * 验证码检测
  * @param {*} ctx 需要传递ctx对象
  * @param {*} captch 验证码
  * return true | false
