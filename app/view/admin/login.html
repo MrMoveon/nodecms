@@ -17,6 +17,10 @@
             <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
         </div>
         <div class="ly-input">
+            <input type="text" name="captch" required  lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" style="width:174px;display:inline-block">
+            <img id="captch" src="/captch" height="40" width="100" alt="验证码">
+        </div>
+        <div class="ly-input">
             <button class="layui-btn  layui-btn-normal ly-submit" id="ly-submit" lay-submit lay-filter="formDemo">登录</button>
         </div>
     </form>
@@ -34,6 +38,9 @@
         form.on('submit(formDemo)', function(data){
             $('#ly-submit').submit();
         });
+        $('#captch').on('click',function(){
+            $(this).attr('src', '/captch?timer='+new Date().getTime())
+        })
     });
 </script>
 </body>

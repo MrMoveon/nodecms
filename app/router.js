@@ -16,6 +16,8 @@ module.exports = app => {
   router.get('/login',checkLoginAdmin,controller.admin.login.index);
   router.post('/login',checkLoginAdmin,controller.admin.login.index);
   router.get('/logout',checkLoginAdmin,controller.admin.login.logout);
+  router.get('/captch',controller.admin.login.captch);
+  
   // admin
   router.get('/admin',checkLoginAdmin,controller.admin.index.index);
   router.get('/admin/info',checkLoginAdmin,controller.admin.index.info);
