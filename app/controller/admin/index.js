@@ -9,9 +9,11 @@ class IndexController extends Controller {
     // 后台首页
     async index() {
         let { ctx } = this;
+
+       
         await ctx.render('admin/index',{title:'后台首页',userInfo:ctx.session.user});
     }
-    //后台配置页面
+    //后台信息页面
     async info(){
         let { ctx } = this;
         
@@ -30,8 +32,20 @@ class IndexController extends Controller {
             fileSize:ctx.app.config.multipart.fileSize  //上传文件最大尺寸
         }
        
+        const page = ctx.query.page || 1;
+        var limit = 10;
+        var offset=(page-1)*limit;
+        // 总数
+        var logs = await ctx.service.admin.log.find();
+        var count = logs.length;
+        var results =await ctx.service.admin.log.find({
+            orders: [['id','desc']], // 排序方式
+            limit: limit, // 返回数据量
+            offset: offset, // 数据偏移量
+        });
        
-        await ctx.render('admin/info',{title:'后台信息',info:info});
+       
+        await ctx.render('admin/info',{title:'后台信息',info:info,count:count,limit:limit,page:page,data:results});
     }
    
 }

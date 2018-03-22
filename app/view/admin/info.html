@@ -77,7 +77,41 @@
                                             </table>
                                         </div>
                                     </div>
-                                   
+                                    <div class="layui-colla-item">
+                                        <h2 class="layui-colla-title">日志信息</h2>
+                                        <div class="layui-colla-content">
+                                            <table class="layui-table" lay-skin="nob" lay-even="">
+                                                <colgroup>
+                                                  <col width="30">
+                                                  <col>
+                                                  <col width="160">
+                                                  <col width="160">
+                                                  <col width="200">
+                                                </colgroup>
+                                                <thead>
+                                                  <tr>
+                                                    <th>ID</th>
+                                                    <th>帐号</th>
+                                                    <th>ip</th>
+                                                    <th>登录时间</th>
+                                                    <th>登录信息</th>
+                                                  </tr> 
+                                                </thead>
+                                                <tbody>
+                                                  <% data.forEach(function(item){ %>
+                                                  <tr>
+                                                    <td><%= item.id %></td>
+                                                    <td><%= item.account %></td>
+                                                    <td><%= item.ip %></td>
+                                                    <td><%= item.time %></td>
+                                                    <td><%= item.msg %></td>
+                                                  </tr>
+                                                  <% }) %>
+                                                </tbody>
+                                              </table> 
+                                              <div id="page"></div>
+                                        </div>
+                                    </div>
                                 </div>
                     </div>
                     <div style="height:1000px"></div>
@@ -90,15 +124,29 @@
 
 <script>
     //JavaScript代码区域
-    layui.use(['layer','element'], function () {
-        var layer = layui.layer, element = layui.element;
+    layui.use(['layer','element','laypage','jquery'], function () {
+        var layer = layui.layer, element = layui.element,$ = layui.jquery,laypage=layui.laypage;
 
         //监听折叠
         element.on('collapse(collapse)', function(data){
             layer.msg('展开状态：'+ data.show);
         });
 
-        // you code ...
+       
+        //总页数低于页码总数
+        laypage.render({
+            elem: 'page',
+            count: <%= count %>, //数据总数
+            limit: <%= limit %>,//每页显示几条
+            curr: <%= page %>,//当前页
+            jump: function (obj, first) {
+                //首次不执行
+                if (!first) {
+                    window.location.href="/admin/info?page="+obj.curr;
+                }
+                
+            }
+        });
 
 
     });

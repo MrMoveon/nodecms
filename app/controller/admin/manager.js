@@ -69,7 +69,7 @@ class ManagerController extends Controller {
       const {password,state,id} = ctx.request.body;
       var data={
         id:Number(id),
-        password:password,
+        password:md5(md5(password).substr(4,10)+password),
         state:Number(state)
       }
       var result = await ctx.service.admin.manager.update(data);
