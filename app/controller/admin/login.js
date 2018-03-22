@@ -8,10 +8,14 @@ const loginRule={
 }
 let md5 = require('../../common/md5');
 let {captch,checkCaptch} = require('../../common/captch');
+
 class LoginController extends Controller{
     async index () {
        
         let { ctx } = this;
+        // ip
+        let ip = ctx.request.ip;
+        console.log(ip)
         if(ctx.method==='POST'){
            ctx.validate(loginRule);
            let {account,password,captch} = ctx.request.body;
@@ -26,7 +30,12 @@ class LoginController extends Controller{
             // 用户名
            if(!result) return this.error('用户名错误')
             // 密码
-           if(result.password!=password) return this.error('密码错误')
+            var msg = '';
+           if(result.password!=password){
+                msg="密码错误";
+                await ctx.service.admin.log.add({account:account,ip:ip,msg:msg})
+                return this.error(msg)
+           } 
            // 状态
            if(result.state==0) return this.error('该帐户已禁止登录，请联系管理员')
            //登录成功，用户信息存储session
@@ -34,7 +43,9 @@ class LoginController extends Controller{
                 id:result.id,
                 account:result.account,
             };
-            return this.success('登录成功！','/admin');
+            msg="登录成功！";
+            await ctx.service.admin.log.add({account:account,ip:ip,msg:msg})
+            return this.success(msg,'/admin');
             
         }else{
             var csrfToken = ctx.session.csrfToken;

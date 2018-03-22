@@ -39,11 +39,15 @@
                                             <table class="layui-table">
                                                 <tr>
                                                     <td>服务器IP</td>
-                                                    <td></td>
+                                                    <td><%= info.servieInfo.ip %></td>
                                                 </tr>
                                                 <tr>
                                                     <td width="40%">服务器域名</td>
                                                     <td width="60%"><%= info.servieInfo.hostname %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>服务器端口</td>
+                                                    <td><%= info.servieInfo.port %></td>
                                                 </tr>
                                                 <tr>
                                                     <td>服务器操作系统</td>
@@ -51,12 +55,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>运行环境</td>
-                                                    <td></td>
+                                                    <td>node</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>服务器端口</td>
-                                                    <td></td>
-                                                </tr>
+                                                
                                                 <tr>
                                                     <td width="40%">node版本</td>
                                                     <td width="60%"><%= info.servieInfo.versions %></td>
@@ -64,6 +65,10 @@
                                                 <tr>
                                                     <td>数据库名称</td>
                                                     <td><%= info.servieInfo.database %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>数据库版本号</td>
+                                                    <td><%= info.servieInfo.databaseVersion %></td>
                                                 </tr>
                                                 <tr>
                                                     <td>上传文件最大限制</td>
