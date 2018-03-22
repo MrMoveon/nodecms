@@ -22,9 +22,9 @@ class IndexController extends Controller {
         var version = await ctx.app.mysql.query('select version()');
         
         info.servieInfo={
-            ip:ctx.request.ip,
+            ip:ctx.request.ip,          //egg 自带ip查询
             hostname:ctx.hostname,    //域名
-            port:new url.URL(ctx.href).port,
+            port:new url.URL(ctx.href).port,    //通过URL来获取端口号
             versions: process.versions.node,  //node版本号
             platform:os.type(),   //系统
             database:ctx.app.config.mysql.client.database,   //数据库名称

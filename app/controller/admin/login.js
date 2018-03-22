@@ -15,7 +15,6 @@ class LoginController extends Controller{
         let { ctx } = this;
         // ip
         let ip = ctx.request.ip;
-        console.log(ip)
         if(ctx.method==='POST'){
            ctx.validate(loginRule);
            let {account,password,captch} = ctx.request.body;

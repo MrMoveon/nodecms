@@ -64,7 +64,7 @@ class ManagerController extends Controller {
   async edit () {
     const {ctx} = this;
     if(ctx.method==='POST'){
-      console.log(ctx.request.body)
+     
       ctx.validate(updateRule);
       const {password,state,id} = ctx.request.body;
       var data={
