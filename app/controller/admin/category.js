@@ -53,6 +53,7 @@ class CategoryController extends Controller {
         }
         ]
         var tree=limitless([],data);
+        // var tree = ctx.helper.limitless([],data)
         console.log(tree)
         await ctx.render('admin/category_index',{title:'栏目列表',data:tree})
   }
