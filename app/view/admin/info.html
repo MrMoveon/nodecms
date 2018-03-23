@@ -103,7 +103,7 @@
                                                     <td><%= item.id %></td>
                                                     <td><%= item.account %></td>
                                                     <td><%= item.ip %></td>
-                                                    <td><%= item.time %></td>
+                                                    <td><%- helper.relativeTime(item.time)  %></td>
                                                     <td><%= item.msg %></td>
                                                   </tr>
                                                   <% }) %>
@@ -132,7 +132,7 @@
             layer.msg('展开状态：'+ data.show);
         });
 
-       
+        console.log(<%- helper.relativeTime %>);
         //总页数低于页码总数
         laypage.render({
             elem: 'page',
