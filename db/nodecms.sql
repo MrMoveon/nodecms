@@ -10,10 +10,27 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2018-03-23 16:18:46
+Date: 2018-03-27 15:13:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `access`
+-- ----------------------------
+DROP TABLE IF EXISTS `access`;
+CREATE TABLE `access` (
+  `role_id` smallint(6) unsigned NOT NULL,
+  `node_id` smallint(6) unsigned NOT NULL,
+  `level` tinyint(1) NOT NULL,
+  `module` varchar(50) DEFAULT NULL,
+  KEY `groupId` (`role_id`),
+  KEY `nodeId` (`node_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of access
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `category`
@@ -63,7 +80,7 @@ CREATE TABLE `log` (
   `time` varchar(32) NOT NULL DEFAULT '0' COMMENT '写入时间',
   `msg` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -96,6 +113,8 @@ INSERT INTO `log` VALUES ('26', 'admin', '127.0.0.1', '1521788953573', '密码�
 INSERT INTO `log` VALUES ('27', 'admin', '127.0.0.1', '1521788982920', '登录成功！');
 INSERT INTO `log` VALUES ('28', 'admin', '127.0.0.1', '1521789145184', '登录成功！');
 INSERT INTO `log` VALUES ('29', 'admin', '127.0.0.1', '1521790097505', '登录成功！');
+INSERT INTO `log` VALUES ('30', 'admin', '127.0.0.1', '1521796229792', '登录成功！');
+INSERT INTO `log` VALUES ('31', 'admin', '127.0.0.1', '1522134703269', '登录成功！');
 
 -- ----------------------------
 -- Table structure for `manager`
@@ -106,6 +125,9 @@ CREATE TABLE `manager` (
   `account` varchar(50) NOT NULL COMMENT '管理账号',
   `password` varchar(32) NOT NULL COMMENT '管理员密码',
   `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '账号状态 0：锁定，1：正常',
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0不是超级管理员 1 是超级管理员',
+  `update_time` varchar(13) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `create_time` varchar(13) NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_UNIQUE` (`account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -113,6 +135,64 @@ CREATE TABLE `manager` (
 -- ----------------------------
 -- Records of manager
 -- ----------------------------
-INSERT INTO `manager` VALUES ('1', 'admin', 'utUy7gZNc9IAxow0lWO2Mw==', '1');
-INSERT INTO `manager` VALUES ('2', 'editAdmin', '2KOxya5JHTYQgu2PrInwRQ==', '1');
-INSERT INTO `manager` VALUES ('3', 'testadmin', 'utUy7gZNc9IAxow0lWO2Mw==', '1');
+INSERT INTO `manager` VALUES ('1', 'admin', 'utUy7gZNc9IAxow0lWO2Mw==', '1', '0', '0', '0');
+INSERT INTO `manager` VALUES ('2', 'editAdmin', '2KOxya5JHTYQgu2PrInwRQ==', '1', '0', '0', '0');
+INSERT INTO `manager` VALUES ('3', 'testadmin', 'utUy7gZNc9IAxow0lWO2Mw==', '1', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for `node`
+-- ----------------------------
+DROP TABLE IF EXISTS `node`;
+CREATE TABLE `node` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `remark` varchar(255) DEFAULT NULL,
+  `sort` smallint(6) unsigned DEFAULT NULL,
+  `pid` smallint(6) unsigned NOT NULL,
+  `level` tinyint(1) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `level` (`level`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of node
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `role`
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `pid` smallint(6) DEFAULT NULL,
+  `status` tinyint(1) unsigned DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `role_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `role_user`;
+CREATE TABLE `role_user` (
+  `role_id` mediumint(9) unsigned DEFAULT NULL,
+  `user_id` char(32) DEFAULT NULL,
+  KEY `group_id` (`role_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_user
+-- ----------------------------

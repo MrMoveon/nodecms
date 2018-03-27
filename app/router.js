@@ -33,6 +33,15 @@ module.exports = app => {
   //栏目管理
   router.get('/admin/category',checkLoginAdmin,controller.admin.category.index);
   router.get('/admin/category/add',checkLoginAdmin,controller.admin.category.add);
+  //RBAC
+  router.get('/admin/role',checkLoginAdmin,controller.admin.rbac.role);
+  router.get('/admin/role/add',checkLoginAdmin,controller.admin.rbac.role_add);
+  router.post('/admin/role/add',checkLoginAdmin,controller.admin.rbac.role_add);
+  router.get('/admin/role/del',checkLoginAdmin,controller.admin.rbac.role_del);
+  router.get('/admin/node',checkLoginAdmin,controller.admin.rbac.node);
+  router.get('/admin/node/add',checkLoginAdmin,controller.admin.rbac.node_add);
+  router.post('/admin/node/add',checkLoginAdmin,controller.admin.rbac.node_add);
+  router.get('/admin/node/del',checkLoginAdmin,controller.admin.rbac.node_del);
   // 网站配置
   router.get('/admin/config',checkLoginAdmin,controller.admin.config.index);
   router.post('/admin/config',checkLoginAdmin,controller.admin.config.index);
