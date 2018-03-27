@@ -33,6 +33,13 @@ module.exports = app => {
   //栏目管理
   router.get('/admin/category',checkLoginAdmin,controller.admin.category.index);
   router.get('/admin/category/add',checkLoginAdmin,controller.admin.category.add);
+  //模型
+
+  router.get('/admin/model/list',checkLoginAdmin,controller.admin.model.list);
+  router.get('/admin/model',checkLoginAdmin,controller.admin.model.index);
+  router.get('/admin/model/add',checkLoginAdmin,controller.admin.model.add);
+  router.post('/admin/model/add',checkLoginAdmin,controller.admin.model.add);
+  router.get('/admin/model/del',checkLoginAdmin,controller.admin.model.del);
   //RBAC
   router.get('/admin/role',checkLoginAdmin,controller.admin.rbac.role);
   router.get('/admin/role/add',checkLoginAdmin,controller.admin.rbac.role_add);

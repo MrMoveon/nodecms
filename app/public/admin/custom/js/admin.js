@@ -4,9 +4,11 @@
 $(function () {
 
 //    左侧菜单
-    $('.layui-nav-item').on('click','dd a',function(){
+    $('.layui-nav-item').on('click','a',function(){
         var obj=$(this);
-        $('.breadcrumb-text').text(obj.text())
+        if(obj.attr('href')!='javascript:;'){
+           $('.breadcrumb-text').text(obj.text())
+        }
     });
 
 

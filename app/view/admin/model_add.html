@@ -1,0 +1,49 @@
+<%- include('common/meta.html') %>
+<body style="">
+    
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header"><%= title %></div>
+                <div class="layui-card-body">
+                    <!--  -->
+                    <form class="layui-form" action="/admin/model/add?_csrf=<%- csrfToken %>" method="post">
+                      
+                            <div class="layui-form-item">
+                              <label class="layui-form-label">模型名称</label>
+                              <div class="layui-input-inline">
+                                <input type="text" name="model_name" required lay-verify="require" placeholder="请输入模型名称" autocomplete="off" class="layui-input">
+                              </div>
+                            </div>
+                            <div class="layui-form-item">
+                              <label class="layui-form-label">数据表名称</label>
+                              <div class="layui-input-inline">
+                                <input type="text" name="table_name" required lay-verify="require" placeholder="请输入数据表名称" autocomplete="off" class="layui-input">
+                              </div>
+                            </div>
+                             <div class="layui-form-item">
+                              <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="add">添加</button>
+                              </div>
+                            </div>
+                          </form>
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //JavaScript代码区域
+    layui.use(['jquery','layer',"form"], function () {
+        var $ = layui.jquery, layer = layui.layer, form = layui.form;
+        
+       
+
+    });
+</script>
+</body>
+</html>
